@@ -67,12 +67,24 @@ d3.json(geojsonURL).then(data => {
         .each(function (d) {
             const markerGroup = d3.select(this);
 
+             // Append marker icon
             markerGroup.append("svg:image")
                 .attr("xlink:href", "images/location-pin.svg")
                 .attr("width", 24)
                 .attr("height", 24)
                 .attr("x", -12)
                 .attr("y", -24);
+            
+         // Append text label for each marker
+            markerGroup.append("text")
+                .attr("x", 10) // Adjust the x position relative to the marker
+                .attr("y", 5)  // Adjust the y position relative to the marker
+                .attr("class", "marker-label")
+                .text(d.shortname)
+                .style("font-size", "12px")
+                .style("font-family", "'Montserrat', 'Helvetica Light', Arial, sans-serif")
+                .style("fill", "#0F2B4C") // Dark blue color for visibility
+                .style("pointer-events", "none"); // Prevent text from blocking marker interactions
         })
         .on("mouseover", function (event, d) {
             tooltip.classed("visible", true)

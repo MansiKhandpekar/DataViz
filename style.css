@@ -85,3 +85,10 @@ body {
     transform: scale(1.05); /* Slightly enlarge to show it is selected */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+.marker-label {
+    font-size: 12px;
+    font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
+    fill: #0F2B4C; /* Dark blue */
+    pointer-events: none; /* Prevents interaction interference */
+}
