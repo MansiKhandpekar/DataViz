@@ -1,0 +1,87 @@
+body {
+    font-family: 'Helvetica Light', Arial, sans-serif;
+}
+
+/* #map {
+    width: 960px;
+    height: 600px;
+    margin: 20px auto;
+} */
+
+#map {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+}
+
+
+.tooltip {
+    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    padding: 15px;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 14px;
+    position: absolute;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Faint shadow added */
+}
+
+
+.tooltip.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.state {
+    fill: #B3CCE9;
+    stroke: #ffffff;
+    stroke-width: 1.5px;
+}
+
+.highlighted-state {
+    fill: #0F2B4C;
+}
+
+.university-marker > image {
+    opacity: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.university-marker > image.hovered-marker {
+    opacity: 1;
+    transform: scale(1.55); /* Scales up to 125% on hover */
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+.controls button {
+    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #0F2B4C; /* Dark blue stroke */
+    border-radius: 8px;
+    background-color: #FFFFFF; /* White fill */
+    color: #0F2B4C; /* Dark blue text color to match the stroke */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0C2441;
+    color: #FFFFFF; /* White text for active state */}
+
+.controls button.active {
+    background-color: #0C2441;
+    color: #FFFFFF; /* White text for active state */
+    transform: scale(1.05); /* Slightly enlarge to show it is selected */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
