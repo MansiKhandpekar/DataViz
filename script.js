@@ -120,11 +120,11 @@ d3.json(geojsonURL).then(data => {
             d3.select(this).select("image").classed("hovered-marker", false);
         });
 
-    // Highlight function for specific category
-    function highlightCategory(category) {
-        if (category === "all") {
-            d3.selectAll("#controls button").classed("active", false);
-            d3.select("#all-btn").classed("active", true);
+        // Highlight function for specific category
+        function highlightCategory(category) {
+            if (category === "all") {
+                d3.selectAll("#controls button").classed("active", false);
+                d3.select("#all-btn").classed("active", true);
 
             // Show all states and markers
             svg.selectAll("path").attr("class", "state").style("fill", "#B3CCE9");
@@ -192,6 +192,9 @@ d3.json(geojsonURL).then(data => {
 
     d3.select("#all-btn")
         .on("click", () => highlightCategory("all"));
+
+    // Set default view to "all"
+        highlightCategory("all");
 
     // Update the description container with the list of centers
     function updateDescription(centers) {
