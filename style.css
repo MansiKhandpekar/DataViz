@@ -2,18 +2,11 @@ body {
     font-family: 'Helvetica Light', Arial, sans-serif;
 }
 
-/* #map {
-    width: 960px;
-    height: 600px;
-    margin: 20px auto;
-} */
-
 #map {
     display: flex;
     justify-content: center;  /* Center horizontally */
     align-items: center;  /* Center vertically */
 }
-
 
 .tooltip {
     font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
@@ -30,7 +23,6 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Faint shadow added */
 }
 
-
 .tooltip.visible {
     visibility: visible;
     opacity: 1;
@@ -40,6 +32,7 @@ body {
     fill: #B3CCE9;
     stroke: #ffffff;
     stroke-width: 1.5px;
+    transition: fill 0.5s ease; /* Smooth transition when highlighting */
 }
 
 .highlighted-state {
@@ -77,7 +70,8 @@ body {
 
 .controls button:hover {
     background-color: #0C2441;
-    color: #FFFFFF; /* White text for active state */}
+    color: #FFFFFF; /* White text for active state */
+}
 
 .controls button.active {
     background-color: #0C2441;
@@ -87,8 +81,34 @@ body {
 }
 
 .marker-label {
+    text-transform: uppercase; /* Makes label text uppercase */
     font-size: 12px;
+    font-weight: bold;
     font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
     fill: #0F2B4C; /* Dark blue */
     pointer-events: none; /* Prevents interaction interference */
+    padding: 2px 5px; /* Internal padding for readability */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+}
+
+.hidden-label {
+    visibility: hidden;
+    opacity: 0; /* Fully transparent */
+    transition: visibility 0.3s ease, opacity 0.3s ease; /* Smooth transition for both visibility and opacity */
+    position: relative; /* You can change to absolute if labels need a precise location */
+    top: 15px; /* Optional, adds extra vertical spacing */
+    left: 20px; /* Optional, adds extra horizontal spacing */
+}
+
+.center-description {
+    background: #F9F9F9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Faint shadow for description container */
+    transition: background-color 0.3s ease;
+}
+
+.center-description.highlighted-description {
+    background-color: #E6F0FF; /* Light blue background when highlighted */
 }

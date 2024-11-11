@@ -56,9 +56,9 @@ d3.json(geojsonURL).then(data => {
         .data(states.features)
         .enter().append("path")
         .attr("class", "state")
-        .attr("d", path)
+        .attr("d", path);
 
-    // Draw markers for universities as SVG icons
+    // Draw markers for universities as SVG icons with different custom SVGs
     svg.selectAll("g.university-marker")
         .data(centersData)
         .enter().append("g")
@@ -67,19 +67,35 @@ d3.json(geojsonURL).then(data => {
         .each(function (d) {
             const markerGroup = d3.select(this);
 
-             // Append marker icon
-            markerGroup.append("svg:image")
-                .attr("xlink:href", "images/location-pin.svg")
-                .attr("width", 24)
-                .attr("height", 24)
-                .attr("x", -12)
-                .attr("y", -24);
-            
-         // Append text label for each marker
+     // Set SVG path based on category
+     let svgPath;
+     switch (d.category) {
+         case "study site":
+             svgPath = "images/study-site.svg";
+             break;
+         case "data analysis coordination center":
+             svgPath = "images/dacc.svg";
+             break;
+         case "omics production center":
+             svgPath = "images/opc.svg";
+             break;
+         default:
+             svgPath = "images/default-marker.svg"; // Default SVG if any
+     }
+
+     // Append marker icon
+     markerGroup.append("svg:image")
+         .attr("xlink:href", svgPath)
+         .attr("width", 24)
+         .attr("height", 24)
+         .attr("x", -12) // Center the marker
+         .attr("y", -24); // Align with the bottom
+                 
+            // Append text label for each marker
             markerGroup.append("text")
                 .attr("x", 10) // Adjust the x position relative to the marker
                 .attr("y", 5)  // Adjust the y position relative to the marker
-                .attr("class", "marker-label")
+                .attr("class", "marker-label hidden-label")
                 .text(d.shortname)
                 .style("font-size", "12px")
                 .style("font-family", "'Montserrat', 'Helvetica Light', Arial, sans-serif")
@@ -92,7 +108,6 @@ d3.json(geojsonURL).then(data => {
                     `<div><strong>${d.shortname}</strong></div>` +
                     `<div style="text-align: left;">${d.name}</div>` +
                     `<div>State: <strong>${d.state}</strong></div>` 
-                    // `<div>Description: <strong>${d.description}</strong></div>`
                 );
             d3.select(this).select("image").classed("hovered-marker", true);
         })
@@ -114,6 +129,7 @@ d3.json(geojsonURL).then(data => {
             // Show all states and markers
             svg.selectAll("path").attr("class", "state").style("fill", "#B3CCE9");
             svg.selectAll("g.university-marker").style("visibility", "visible");
+            svg.selectAll("text.marker-label").classed("hidden-label", false); // Show labels
             updateDescription(centersData);
             return;
         }
@@ -142,6 +158,9 @@ d3.json(geojsonURL).then(data => {
         // Highlight the markers based on the category
         svg.selectAll("g.university-marker")
             .style("visibility", d => d.category.toLowerCase() === category.toLowerCase() ? "visible" : "hidden");
+
+        // Hide labels when a specific category is selected
+        svg.selectAll("text.marker-label").classed("hidden-label", true); // Hide labels
 
         // Update description with relevant centers
         const filteredCenters = centersData.filter(center => center.category.toLowerCase() === category.toLowerCase());
@@ -182,8 +201,6 @@ d3.json(geojsonURL).then(data => {
                 .attr('class', 'center-description')
                 .html(
                     `<strong>${center.shortname}</strong><br>` +
-                    // `Category: ${center.category}<br>` +
-                    // `State: ${center.state}<br>` +
                     `Description: ${center.description}<br><br>`
                 );
         });
