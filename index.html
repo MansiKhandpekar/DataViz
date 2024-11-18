@@ -11,25 +11,25 @@
 </head>
 <body>
     <!-- Header for better context and navigation -->
-    <header>
-        <h1>Project Sites</h1>
-    </header>
+    <div id="content-wrapper">
+        
+        <!-- Container for the map visualization -->
+        <div id="map-container" class="map-container">
+            <div id="map"></div>
+        </div>
 
-    <!-- Container for the map visualization -->
-    <div id="map-container" class="map-container">
-        <div id="map"></div>
+        <!-- Controls for filtering categories -->
+        <div id="controls" class="controls">
+            <button id="all-btn">All</button>
+            <button id="study-site-btn">Study Sites</button>
+            <button id="omics-production-center-btn">Omics Production Center</button>
+            <button id="data-analysis-coordination-center-btn">Data Analysis Coordination Centers</button>
+        </div>
+
+        <!-- Container for descriptions of universities -->
+        <!-- <div id="description-container" class="description-container"></div> -->
+
     </div>
-
-    <!-- Controls for filtering categories -->
-    <div id="controls" class="controls">
-        <button id="all-btn">All</button>
-        <button id="study-site-btn">Study Sites</button>
-        <button id="omics-production-center-btn">Omics Production Centers</button>
-        <button id="data-analysis-coordination-center-btn">Data Analysis Coordination Centers</button>
-    </div>
-
-    <!-- Container for descriptions of universities -->
-    <div id="description-container" class="description-container"></div>
 
     <script src="script.js"></script>
 </body>

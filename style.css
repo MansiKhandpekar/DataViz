@@ -1,9 +1,23 @@
 body {
     font-family: 'Helvetica Light', Arial, sans-serif;
+    margin: 0px 50px 0px 50px;
+}
+
+/* Container wrapping the map and description */
+#content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
 }
 
 #map {
+    margin-top: 100px;
     display: flex;
+    flex: 1 1 600px;
+    max-width: 1000px;
+    min-width: 300px;
     justify-content: center;  /* Center horizontally */
     align-items: center;  /* Center vertically */
 }
@@ -20,6 +34,7 @@ body {
     visibility: hidden;
     transition: visibility 0.3s ease, opacity 0.3s ease;
     opacity: 0;
+    width: 300px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Faint shadow added */
 }
 
@@ -32,7 +47,6 @@ body {
     fill: #B3CCE9;
     stroke: #ffffff;
     stroke-width: 1.5px;
-    transition: fill 0.5s ease; /* Smooth transition when highlighting */
 }
 
 .highlighted-state {
@@ -100,15 +114,212 @@ body {
     left: 20px; /* Optional, adds extra horizontal spacing */
 }
 
-.center-description {
-    background: #F9F9F9;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Faint shadow for description container */
-    transition: background-color 0.3s ease;
+/* Style for the title (shortname) of each description */
+.center-title {
+    font-size: 1.5em;                /* Larger font size */
+    font-weight: bold;               /* Make it bold */
+    font-family: 'Montserrat','Helvetica Light', sans-serif;   /* Use a distinct serif font for the title */
+    margin-bottom: 5px;             /* Add spacing below the title */
+    color: #0F2B4C;                  /* Dark Slate Gray for title color */
 }
 
-.center-description.highlighted-description {
-    background-color: #E6F0FF; /* Light blue background when highlighted */
+/* Style for the subtitle (leadership) of each description */
+.center-leadership {
+    font-size: 1.1em;
+    font-family: 'Helvetica Light', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: #6c6c6c;                  /* Dark Slate Gray for title color */
+}
+
+/* Style for the text (description) of each description */
+.center-text {
+    font-size: 1em;                  /* Standard font size for readability */
+    line-height: 1.6;                /* Increased line height for better readability */
+    color: #333333;                     /* Dark color for better contrast */
+}
+
+/* New style for the updated description container */
+#description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.center-description {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.center-description:last-child {
+    border-bottom: none;
+}
+body {
+    font-family: 'Helvetica Light', Arial, sans-serif;
+}
+
+/* Container wrapping the map and description */
+#content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+#map {
+    margin-top: 100px;
+    display: flex;
+    flex: 1 1 600px;
+    max-width: 1000px;
+    min-width: 300px;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;  /* Center vertically */
+}
+
+.tooltip {
+    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    padding: 15px;
+    border-radius: 4px;
+    pointer-events: none;
+    font-size: 14px;
+    position: absolute;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Faint shadow added */
+}
+
+.tooltip.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.state {
+    fill: #B3CCE9;
+    stroke: #ffffff;
+    stroke-width: 1.5px;
+}
+
+.highlighted-state {
+    fill: #0F2B4C;
+}
+
+.university-marker > image {
+    opacity: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.university-marker > image.hovered-marker {
+    opacity: 1;
+    transform: scale(1.55); /* Scales up to 125% on hover */
+}
+
+.controls {
+    text-align: center;
+    margin: 20px;
+}
+
+.controls button {
+    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #0F2B4C; /* Dark blue stroke */
+    border-radius: 8px;
+    background-color: #FFFFFF; /* White fill */
+    color: #0F2B4C; /* Dark blue text color to match the stroke */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0C2441;
+    color: #FFFFFF; /* White text for active state */
+}
+
+.controls button.active {
+    background-color: #0C2441;
+    color: #FFFFFF; /* White text for active state */
+    transform: scale(1.05); /* Slightly enlarge to show it is selected */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.marker-label {
+    text-transform: uppercase; /* Makes label text uppercase */
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
+    fill: #0F2B4C; /* Dark blue */
+    pointer-events: none; /* Prevents interaction interference */
+    padding: 2px 5px; /* Internal padding for readability */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+}
+
+.hidden-label {
+    visibility: hidden;
+    opacity: 0; /* Fully transparent */
+    transition: visibility 0.3s ease, opacity 0.3s ease; /* Smooth transition for both visibility and opacity */
+    position: relative; /* You can change to absolute if labels need a precise location */
+    top: 15px; /* Optional, adds extra vertical spacing */
+    left: 20px; /* Optional, adds extra horizontal spacing */
+}
+
+/* Style for the title (shortname) of each description */
+.center-title {
+    font-size: 1.5em;                /* Larger font size */
+    font-weight: bold;               /* Make it bold */
+    font-family: 'Montserrat','Helvetica Light', sans-serif;   /* Use a distinct serif font for the title */
+    margin-bottom: 5px;             /* Add spacing below the title */
+    color: #0F2B4C;                  /* Dark Slate Gray for title color */
+}
+
+/* Style for the subtitle (leadership) of each description */
+.center-leadership {
+    font-size: 1.1em;
+    font-family: 'Helvetica Light', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: #6c6c6c;                  /* Dark Slate Gray for title color */
+}
+
+/* Style for the text (description) of each description */
+.center-text {
+    font-size: 1em;                  /* Standard font size for readability */
+    line-height: 1.6;                /* Increased line height for better readability */
+    color: #333333;                     /* Dark color for better contrast */
+}
+
+/* New style for the updated description container */
+#description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.center-description {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.center-description:last-child {
+    border-bottom: none;
 }
