@@ -4,6 +4,8 @@ body {
     margin: 0; /* Removed side margin for a more modern appearance */
     padding: 0;
     box-sizing: border-box;
+    /* height: 100vh; Set body height to viewport height to fix height of entire page */
+    /* overflow: hidden; Prevent entire body from scrolling */
 }
 
 /* Container wrapping the map and description */
@@ -15,6 +17,7 @@ body {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto; /* Center the content on the page */
+    /* overflow: hidden; */
 }
 
 /* Controls styling */
@@ -57,6 +60,7 @@ body {
     max-width: 1000px;
     min-height: 500px;
     margin: 0 auto; /* Center the map */
+    flex: 2; /* Occupies double the space compared to the description container */
 }
 
 #map svg {
@@ -140,6 +144,8 @@ body {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1000px;
+    height: 800px; /* Fixed height to fit into the full layout */
+    overflow-y: auto; /* Scroll vertically if content exceeds height */
     margin: 20px auto;
 }
 
@@ -207,6 +213,7 @@ body {
         padding: 15px;
         width: 90%;
         margin: 15px auto;
+        height: 200px; /* Adjust height for smaller screens */
     }
 
     .controls button {
@@ -235,6 +242,7 @@ body {
         padding: 10px;
         width: 95%;
         margin: 10px auto;
+        height: 150px; /* Adjust height for smaller screens */
     }
 
     .controls {
