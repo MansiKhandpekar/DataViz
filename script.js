@@ -357,6 +357,18 @@ d3.json(geojsonURL).then(data => {
     d3.select("#all-btn")
         .on("click", () => highlightCategory("all"));
 
+
+
+    // Scroll visibility logic
+    descriptionContainer.node().addEventListener('scroll', () => {
+        descriptionContainer.classed('scrolling', true);
+        window.clearTimeout(isScrolling);
+
+        isScrolling = setTimeout(() => {
+            descriptionContainer.classed('scrolling', false);
+        }, 500);
+    });
+
     // Update the description container with the list of centers
     // function updateDescription(centers) {
     //     descriptionContainer.html(''); // Clear previous descriptions
@@ -391,5 +403,7 @@ d3.json(geojsonURL).then(data => {
                 );
         });
     }
+
+    
 
 });
