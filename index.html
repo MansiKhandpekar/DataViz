@@ -10,14 +10,27 @@
     <script src="https://d3js.org/topojson.v1.min.js"></script>
 </head>
 <body>
-    <div id="map"></div>
-    <div id="controls" class="controls">
-        <button id="all-btn">All</button>
-        <button id="study-site-btn">Study Sites</button>
-        <button id="omics-production-center-btn">Omics Production Centers</button>
-        <button id="data-analysis-coordination-center-btn">Data Analysis Coordination Centers</button>
+    <!-- Header for better context and navigation -->
+    <div id="content-wrapper">
+        
+        <!-- Container for the map visualization -->
+        <div id="map-container" class="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Controls for filtering categories -->
+        <div id="controls" class="controls">
+            <button id="all-btn">All</button>
+            <button id="study-site-btn">Study Sites</button>
+            <button id="omics-production-center-btn">Omics Production Center</button>
+            <button id="data-analysis-coordination-center-btn">Data Analysis Coordination Centers</button>
+        </div>
+
+        <!-- Container for descriptions of universities -->
+        <!-- <div id="description-container" class="description-container"></div> -->
+
     </div>
-    <div id="description-container"></div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,22 +1,72 @@
+/* General styling */
 body {
     font-family: 'Helvetica Light', Arial, sans-serif;
+    margin: 0; /* Removed side margin for a more modern appearance */
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* #map {
-    width: 960px;
-    height: 600px;
-    margin: 20px auto;
-} */
+/* Container wrapping the map and description */
+#content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the content on the page */
+}
 
+/* Controls styling */
+.controls {
+    text-align: center;
+    margin-bottom: 20px; /* Added margin to separate buttons from the map */
+}
+
+.controls button {
+    font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #0F2B4C;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #0F2B4C;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0C2441;
+    color: #FFFFFF;
+}
+
+.controls button.active {
+    background-color: #0C2441;
+    color: #FFFFFF;
+    transform: scale(1.05);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Map styling */
 #map {
     display: flex;
-    justify-content: center;  /* Center horizontally */
-    align-items: center;  /* Center vertically */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 500px;
+    margin: 0 auto; /* Center the map */
 }
 
+#map svg {
+    width: 100%;
+    height: auto;
+}
 
+/* Tooltip styling */
 .tooltip {
-    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
     background: #fff;
     color: #333;
     padding: 15px;
@@ -27,15 +77,16 @@ body {
     visibility: hidden;
     transition: visibility 0.3s ease, opacity 0.3s ease;
     opacity: 0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Faint shadow added */
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .tooltip.visible {
     visibility: visible;
     opacity: 1;
 }
 
+/* State styling */
 .state {
     fill: #B3CCE9;
     stroke: #ffffff;
@@ -46,6 +97,7 @@ body {
     fill: #0F2B4C;
 }
 
+/* Marker styling */
 .university-marker > image {
     opacity: 1;
     cursor: pointer;
@@ -54,34 +106,156 @@ body {
 
 .university-marker > image.hovered-marker {
     opacity: 1;
-    transform: scale(1.55); /* Scales up to 125% on hover */
+    transform: scale(1.55);
 }
 
-.controls {
-    text-align: center;
-    margin: 20px;
+.marker-label {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Montserrat', 'Helvetica Light', Arial, sans-serif;
+    fill: #0F2B4C;
+    pointer-events: none;
+    padding: 2px 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.controls button {
-    font-family: 'Montserrat','Helvetica Light', Arial, sans-serif;
-    padding: 10px 20px;
-    margin: 5px;
-    border: 2px solid #0F2B4C; /* Dark blue stroke */
+.hidden-label {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    top: 15px;
+    left: 20px;
+}
+
+/* Styles for description container */
+#description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
     border-radius: 8px;
-    background-color: #FFFFFF; /* White fill */
-    color: #0F2B4C; /* Dark blue text color to match the stroke */
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
 }
 
-.controls button:hover {
-    background-color: #0C2441;
-    color: #FFFFFF; /* White text for active state */}
+.center-description {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
 
-.controls button.active {
-    background-color: #0C2441;
-    color: #FFFFFF; /* White text for active state */
-    transform: scale(1.05); /* Slightly enlarge to show it is selected */
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.center-description:last-child {
+    border-bottom: none;
+}
+
+/* Style for the title of each description */
+.center-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Montserrat', 'Helvetica Light', sans-serif;
+    margin-bottom: 5px;
+    color: #0F2B4C;
+}
+
+/* Style for the subtitle of each description */
+.center-leadership {
+    font-size: 1.1em;
+    font-family: 'Helvetica Light', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    color: #6c6c6c;
+}
+
+/* Style for the text of each description */
+.center-text {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1024px) {
+    #content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #map {
+        max-width: 80%;
+        margin-top: 50px;
+    }
+
+    .controls button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #map {
+        margin-top: 30px;
+        width: 100%;
+        max-width: 600px;
+        min-width: auto;
+    }
+
+    #description-container {
+        padding: 15px;
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .controls button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .tooltip {
+        width: 250px;
+    }
+
+    .center-title {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    #map {
+        margin-top: 20px;
+        max-width: 100%;
+        min-width: auto;
+        flex: 1 1 100%;
+    }
+
+    #description-container {
+        padding: 10px;
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .controls {
+        margin: 10px;
+    }
+
+    .controls button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .center-title {
+        font-size: 1.2em;
+    }
+
+    .center-text {
+        font-size: 0.9em;
+    }
+
+    .tooltip {
+        width: 200px;
+        padding: 10px;
+    }
 }
