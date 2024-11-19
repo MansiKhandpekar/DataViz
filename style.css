@@ -2,7 +2,7 @@
 body {
     font-family: 'Helvetica Light', Arial, sans-serif;
     margin: 0; /* Removed side margin for a more modern appearance */
-    padding: 0;
+    padding: 50px 0px;
     box-sizing: border-box;
     /* height: 100vh; Set body height to viewport height to fix height of entire page */
     /* overflow: hidden; Prevent entire body from scrolling */
@@ -149,9 +149,25 @@ body {
     max-height: 800px; /* Fixed height to fit into the full layout */
     overflow-y: auto; /* Scroll vertically if content exceeds height */
     height: auto; /* Allow height to adjust based on content */
+    scrollbar-gutter: stable both-edges; /* Reserve space for scrollbar to avoid layout shifts */
 
     transition: overflow 0.3s ease-in-out; /* Smooth transition for overflow property */
 }
+
+/* Scrollbar styling for webkit browsers (Chrome, Safari, Edge) */
+#description-container::-webkit-scrollbar {
+    width: 4px; /* Thin scrollbar for minimal visual impact */
+}
+
+#description-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.212); /* Lightly colored scrollbar thumb */
+    border-radius: 10px; /* Rounded scrollbar for a smooth, modern look */
+}
+
+#description-container::-webkit-scrollbar-track {
+    background: transparent; /* Make track transparent for minimal impact */
+}
+
 
 .center-description {
     padding: 10px;
@@ -186,8 +202,6 @@ body {
     line-height: 1.6;
     color: #333333;
 }
-
-
 
 /* Media Queries for Responsive Design */
 @media (max-width: 1024px) {
@@ -273,4 +287,3 @@ body {
         padding: 10px;
     }
 }
-
