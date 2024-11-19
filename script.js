@@ -166,6 +166,8 @@ const height = 600;
 
 // Create SVG in the #map div
 const svg = d3.select("#map").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`) // Added viewBox to make the SVG responsive
+    .attr("preserveAspectRatio", "xMidYMid meet") // Keeps the map centered and maintains aspect ratio
     .attr("width", width + 50)
     .attr("height", height + 50)
     .attr("class", "map-svg")
