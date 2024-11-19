@@ -357,28 +357,6 @@ d3.json(geojsonURL).then(data => {
     d3.select("#all-btn")
         .on("click", () => highlightCategory("all"));
 
-
-
-    // Scroll visibility logic
-    descriptionContainer.node().addEventListener('scroll', () => {
-        descriptionContainer.classed('scrolling', true);
-        window.clearTimeout(isScrolling);
-
-        isScrolling = setTimeout(() => {
-            descriptionContainer.classed('scrolling', false);
-        }, 500);
-    });
-
-    // Update the description container with the list of centers
-    // function updateDescription(centers) {
-    //     descriptionContainer.html(''); // Clear previous descriptions
-    //     centers.forEach(center => {
-    //         descriptionContainer.append('div')
-    //             .attr('class', 'center-description')
-    //             .html(
-    //                 `<strong>${center.shortname}</strong><br>` +
-    //                 `Description: ${center.description}<br><br>`
-    //             );
     function updateDescription(centers) {
         // Get unique shortnames and descriptions
         const uniqueCenters = [];
@@ -404,6 +382,41 @@ d3.json(geojsonURL).then(data => {
         });
     }
 
-    
+    // Add scroll visibility logic for the description container
+
+    if (descriptionContainer) {
+    let isScrolling;
+
+     // Show scrollbar on hover
+     descriptionContainer.on('mouseenter', function() {
+        descriptionContainer
+            .style("overflow-y", "auto") // Show scrollbar on hover
+            .style("scrollbar-width", "thin") // Set scrollbar width to thin
+            .style("transition", "overflow 0.8s ease-in-ot"); // Smooth transition for overflow
+    });
+
+    // Hide scrollbar when mouse leaves and no active scrolling
+    descriptionContainer.on('mouseleave', function() {
+        if (!d3.select(this).classed('scrolling')) {
+            descriptionContainer.style("overflow-y", "hidden"); // Hide scrollbar
+        }
+    });
+
+    // Handle scroll event to show scrollbar while scrolling
+    descriptionContainer.on('scroll', function() {
+        descriptionContainer.style("overflow-y", "auto"); // Show scrollbar during scrolling
+
+        // Clear any previous timeout to prevent hiding scrollbar too early
+        window.clearTimeout(isScrolling);
+
+        // Set a timeout to hide the scrollbar after scrolling stops
+        isScrolling = setTimeout(() => {
+            if (!descriptionContainer.node().matches(':hover')) {
+                descriptionContainer.style("overflow-y", "hidden"); // Hide scrollbar after stopping
+            }
+        }, 1000); // 1000ms delay after scroll ends to hide scrollbar
+    });
+    }
+
 
 });
