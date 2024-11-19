@@ -33,15 +33,13 @@
 
     <script src="script.js"></script>
     <script>
-        window.onload = function() {
-            // Calculate the page height after everything is loaded
-            const body = document.body;
-            const html = document.documentElement;
-            const height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-            
-            // Send the height to the parent Wix page
-            parent.postMessage(height, "*");
-        };
+    window.onload = function () {
+        // Measure the height of the document content
+        const height = document.body.scrollHeight;
+    
+        // Send a message to the parent page (Wix) containing the height
+        window.parent.postMessage({ height: height }, "*");
+    };
     </script>
 </body>
 </html>
