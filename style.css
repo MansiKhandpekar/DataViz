@@ -146,8 +146,8 @@ body {
     max-width: 1000px;
     margin: 20px auto;
 
-    max-height: 800px; /* Fixed height to fit into the full layout */
-    overflow-y: auto; /* Scroll vertically if content exceeds height */
+    /* max-height: 800px; Fixed height to fit into the full layout */
+    /* overflow-y: auto; Scroll vertically if content exceeds height */
     height: auto; /* Allow height to adjust based on content */
     scrollbar-gutter: stable both-edges; /* Reserve space for scrollbar to avoid layout shifts */
 
